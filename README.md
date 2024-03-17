@@ -85,7 +85,7 @@ Após seguir esses passos, seu ambiente Laravel Docker estará configurado e pro
 
 - `POST /api/login`: Endpoint para autenticar um usuário. Requer um payload JSON contendo `email` e `password`.
 - `POST /api/logout`: Endpoint para fazer logout de um usuário autenticado.
-- `GET /endereco/{cep}`: Endpoint para consultar informações de endereço usando um CEP. Requer Beare autenticação.
+- `GET /api/endereco/{cep}`: Endpoint para consultar informações de endereço usando um CEP. Requer Beare autenticação.
 
 ## Usuário de Teste
 
