@@ -46,13 +46,13 @@ Este repositório contém um ambiente Docker configurado para desenvolvimento La
 4. Inicie os contêineres Docker:
 
     ```bash
-    docker-compose up -d
+    docker compose up -d
     ```
 
 5. Acesse o contêiner da aplicação Laravel:
 
     ```bash
-    docker-compose exec app bash
+    docker compose exec app bash
     ```
 
 6. Instale as dependências PHP com Composer:
