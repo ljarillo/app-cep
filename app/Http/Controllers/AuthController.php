@@ -12,10 +12,10 @@ class AuthController extends Controller
     {
         if(Auth::attempt($request->only('email', 'password'))){
             return response()->json([
-                'token' => $request->user()->createToken('invoice')->plainTextToken
+                'token' => $request->user()->createToken('')->plainTextToken
         ]);
         }
-        return response()->json(['Not Autorized'], 403);
+        return response()->json(['message' => 'Unauthorized'], 403);
     }
     public function logout()
     {

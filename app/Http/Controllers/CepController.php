@@ -18,7 +18,7 @@ class CepController extends Controller
         try {
             return $this->cepService->getAddressByCep($cep);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Ocorreu um erro ao processar a requisição'], 500);
+            return response()->json(['message' => 'Ocorreu um erro ao processar a requisição'], 500);
         }
     }
 }

@@ -23,7 +23,7 @@ class CepService
                 'uf' => $data['uf'] ?? null
             ]);
         } else {
-            return response()->json(['error' => 'CEP não encontrado'], 404);
+            return response()->json(['message' => 'CEP não encontrado'], 404);
         }
     }
 }
