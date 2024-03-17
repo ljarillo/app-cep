@@ -17,8 +17,10 @@ class AuthController extends Controller
         }
         return response()->json(['message' => 'Unauthorized'], 403);
     }
-    public function logout()
+    public function logout(Request $request)
     {
-        
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json(['message' => 'Token Revoked']);
     }
 }
