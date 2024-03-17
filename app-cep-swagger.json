@@ -1,0 +1,168 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Sistema de Consulta de CEP API",
+      "description": "API para consultar informações de endereço usando CEP, com autenticação via Sanctum.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8989/"
+      }
+    ],
+    "paths": {
+      "/api/login": {
+        "post": {
+          "summary": "Autenticar usuário",
+          "description": "Endpoint para autenticar um usuário. Requer um payload JSON contendo email e password.",
+          "responses": {
+            "200": {
+              "description": "Autenticação bem-sucedida"
+            },
+            "403": {
+              "description": "Não autorizado.",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "message": "Unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/logout": {
+        "post": {
+          "summary": "Fazer logout",
+          "description": "Endpoint para fazer logout de um usuário autenticado.",
+          "responses": {
+            "200": {
+              "description": "Logout bem-sucedido",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "message": "Token Revoked."
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Não autenticado.",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "message": "Unauthenticated."
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      },
+      "/api/endereco/{cep}": {
+        "get": {
+          "summary": "Consultar endereço por CEP",
+          "description": "Endpoint para consultar informações de endereço usando um CEP. Requer autenticação.",
+          "parameters": [
+            {
+              "name": "cep",
+              "in": "path",
+              "description": "CEP a ser consultado",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Consulta bem-sucedida",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "cep": { "type": "string" },
+                      "logradouro": { "type": "string" },
+                      "complemento": { "type": "string" },
+                      "bairro": { "type": "string" },
+                      "localidade": { "type": "string" },
+                      "uf": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Não autenticado.",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "message": "Unauthenticated."
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Não autorizado.",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "message": "Unauthorized."
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "CEP não encontrado",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "message": "CEP não encontrado"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+}

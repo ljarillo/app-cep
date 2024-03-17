@@ -14,7 +14,7 @@ Este é um sistema desenvolvido em Laravel que permite aos usuários consultar i
 - PHP >= 8.2
 - MySQL ou outro banco de dados suportado pelo Laravel
 
-# Setup Docker Laravel
+## Setup Docker Laravel
 
 Este repositório contém um ambiente Docker configurado para desenvolvimento Laravel.
 
@@ -93,6 +93,13 @@ Você pode usar o seguinte usuário para autenticar e usar a rota:
 
 - **Email:** test@user.com
 - **Senha:** 123
+
+## Documentação da API
+
+A documentação da API está disponível no arquivo `app-cep-swagger.json`, que contém a especificação Swagger das rotas e endpoints da aplicação. Este arquivo pode ser usado para importar a documentação em ferramentas Swagger ou para gerar documentação interativa.
+
+Para visualizar a documentação, você pode usar ferramentas como Swagger UI, Insomnia ou Postman. Certifique-se de passar o cabeçalho `Accept: application/json` nas requisições para obter as respostas no formato JSON.
+
 
 ## Licença
 
