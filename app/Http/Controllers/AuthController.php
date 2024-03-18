@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AuthenticationRequest;
 
 class AuthController extends Controller
 {
 
-    public function login(Request $request)
+    public function login(AuthenticationRequest $request)
     {
         if(Auth::attempt($request->only('email', 'password'))){
             return response()->json([
