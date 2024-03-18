@@ -6,12 +6,10 @@ use App\Services\CepService;
 
 class CepController extends Controller
 {
-    protected $cepService;
-
-    public function __construct(CepService $cepService)
+    public function __construct(protected CepService $cepService)
     {
-        $this->cepService = $cepService;
     }
+
 
     public function getAddress($cep)
     {
